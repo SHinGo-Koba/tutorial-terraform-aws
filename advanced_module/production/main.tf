@@ -1,7 +1,3 @@
-module "data" {
-  source = "../modules/data"
-}
-
 module "network" {
   source              = "../modules/network"
   vpc_cidr            = local.vpc_cidr
@@ -26,7 +22,6 @@ module "web" {
 
 module "compute" {
   source             = "../modules/compute"
-  ami_id             = module.data.ami_id
   instance_type      = local.instances.type
   subnet_ids         = module.network.public_subnets_ids
   security_group_ids = [module.security.ec2_sg_id]
