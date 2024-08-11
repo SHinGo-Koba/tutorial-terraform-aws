@@ -16,7 +16,7 @@ module "security" {
   environment = local.environment
 }
 
-module "alb" {
+module "web" {
   source            = "../modules/web"
   vpc_id            = module.network.vpc_id
   subnet_ids        = module.network.public_subnets_ids
@@ -24,7 +24,7 @@ module "alb" {
   environment       = local.environment
 }
 
-module "ec2" {
+module "compute" {
   source             = "../modules/compute"
   ami_id             = module.data.ami_id
   instance_type      = local.instances.type
@@ -35,5 +35,5 @@ module "ec2" {
   desired_capacity   = local.instances.desired_capacity_size
   min_size           = local.instances.min_size
   max_size           = local.instances.max_size
-  target_group_arn   = module.alb.target_group_arn
+  target_group_arn   = module.web.target_group_arn
 }
