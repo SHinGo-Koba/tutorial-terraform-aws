@@ -27,13 +27,13 @@ module "alb" {
 module "ec2" {
   source             = "../modules/ec2"
   ami_id             = module.data.ami_id
-  instance_type      = local.instance_type
+  instance_type      = local.instances.type
   subnet_ids         = module.network.public_subnets_ids
   security_group_ids = [module.security.ec2_sg_id]
   user_data          = file("${path.module}/../modules/ec2/launch_templates/nginx.sh")
   environment        = local.environment
-  desired_capacity   = 1
-  min_size           = 1
-  max_size           = 2
+  desired_capacity   = local.instances.desired_capacity_size
+  min_size           = local.instances.min_size
+  max_size           = local.instances.max_size
   target_group_arn   = module.alb.target_group_arn
 }
