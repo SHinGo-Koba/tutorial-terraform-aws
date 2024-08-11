@@ -1,15 +1,19 @@
 output "vpc_id" {
-  value = aws_vpc.main.id
+  description = "The ID of the VPC"
+  value       = aws_vpc.main.id
 }
 
 output "public_subnets_ids" {
-  value = aws_subnet.public.*.id
+  description = "The IDs of the public subnets"
+  value       = aws_subnet.public.*.id
 }
 
 output "internet_gateway_id" {
-  value = aws_internet_gateway.igw.id
+  description = "The ID of the internet gateway"
+  value       = aws_internet_gateway.igw.id
 }
 
 output "public_route_table_id" {
-  value = aws_route_table.public.id
+  description = "The ID of the public route table"
+  value       = aws_route_table.public.id
 }

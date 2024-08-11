@@ -7,13 +7,13 @@ variable "instance_type" {
 }
 
 variable "subnet_ids" {
-  description = "A list of subnet IDs to launch resources in"
   type        = list(string)
+  description = "A list of subnet IDs to launch resources in"
 }
 
 variable "security_group_ids" {
-  description = "A list of security group IDs to associate with"
   type        = list(string)
+  description = "A list of security group IDs to associate with"
 }
 
 variable "user_data" {

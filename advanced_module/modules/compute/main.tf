@@ -4,7 +4,7 @@ resource "aws_launch_template" "lt" {
   instance_type = var.instance_type
 
   vpc_security_group_ids = var.security_group_ids
-  user_data = base64encode(var.user_data)
+  user_data              = base64encode(var.user_data)
 
   tag_specifications {
     resource_type = "instance"
@@ -20,10 +20,10 @@ resource "aws_launch_template" "lt" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  name_prefix = "asg-${var.environment}-"
-  desired_capacity = var.desired_capacity
-  max_size         = var.max_size
-  min_size         = var.min_size
+  name_prefix         = "asg-${var.environment}-"
+  desired_capacity    = var.desired_capacity
+  max_size            = var.max_size
+  min_size            = var.min_size
   vpc_zone_identifier = var.subnet_ids
 
   mixed_instances_policy {
@@ -55,10 +55,10 @@ resource "aws_autoscaling_group" "asg" {
     propagate_at_launch = true
   }
 
-  health_check_type          = "EC2"
-  health_check_grace_period  = 300
-  force_delete               = true
-  wait_for_capacity_timeout  = "0"
+  health_check_type         = "EC2"
+  health_check_grace_period = 300
+  force_delete              = true
+  wait_for_capacity_timeout = "0"
 }
 
 resource "aws_autoscaling_attachment" "asg_attachment" {

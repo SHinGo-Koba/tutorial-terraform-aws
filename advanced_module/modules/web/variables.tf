@@ -3,8 +3,8 @@ variable "vpc_id" {
 }
 
 variable "subnet_ids" {
-  description = "A list of subnet IDs for the ALB"
   type        = list(string)
+  description = "A list of subnet IDs for the ALB"
 }
 
 variable "security_group_id" {
