@@ -8,7 +8,7 @@ data "aws_ami" "latest_amazon_linux" {
   }
 }
 
-resource "aws_launch_template" "lt" {
+resource "aws_launch_template" "plain" {
   name_prefix   = "lt-${var.environment}-"
   image_id      = data.aws_ami.latest_amazon_linux.id
   instance_type = var.instance_type
@@ -29,7 +29,7 @@ resource "aws_launch_template" "lt" {
   }
 }
 
-resource "aws_autoscaling_group" "asg" {
+resource "aws_autoscaling_group" "plain" {
   name_prefix         = "asg-${var.environment}-"
   desired_capacity    = var.desired_capacity
   max_size            = var.max_size
@@ -39,7 +39,7 @@ resource "aws_autoscaling_group" "asg" {
   mixed_instances_policy {
     launch_template {
       launch_template_specification {
-        launch_template_id = aws_launch_template.lt.id
+        launch_template_id = aws_launch_template.plain.id
         version            = "$Latest"
       }
     }
@@ -71,7 +71,7 @@ resource "aws_autoscaling_group" "asg" {
   wait_for_capacity_timeout = "0"
 }
 
-resource "aws_autoscaling_attachment" "asg_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.asg.name
+resource "aws_autoscaling_attachment" "compute" {
+  autoscaling_group_name = aws_autoscaling_group.plain.name
   lb_target_group_arn    = var.target_group_arn
 }

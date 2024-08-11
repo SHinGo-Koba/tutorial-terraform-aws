@@ -13,7 +13,7 @@ resource "aws_lb" "alb" {
   }
 }
 
-resource "aws_lb_target_group" "tg" {
+resource "aws_lb_target_group" "compute" {
   name     = "tg-${var.environment}"
   port     = 80
   protocol = "HTTP"
@@ -44,6 +44,6 @@ resource "aws_lb_listener" "front_end" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.tg.arn
+    target_group_arn = aws_lb_target_group.compute.arn
   }
 }

@@ -10,7 +10,7 @@ output "public_subnets_ids" {
 
 output "internet_gateway_id" {
   description = "The ID of the internet gateway"
-  value       = aws_internet_gateway.igw.id
+  value       = aws_internet_gateway.main.id
 }
 
 output "public_route_table_id" {
