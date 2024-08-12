@@ -1,6 +1,6 @@
 # tutorial-terraform-aws
 
-Terraform definitions in this directory are for creating a simple AWS infrastructure with a VPC, subnets, security groups, and an EC2 instance.
+Terraform definitions in this directory are for creating a simple AWS infrastructure with a VPC, subnets, security groups, and an EC2 instance with modules.
 
 See a diagram below to understand the infrastructure that will be created.
 
